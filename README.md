@@ -14,13 +14,12 @@ $ go test
 
 ## Add a New Site
 
-All sites implement the `Website` interface:
+Each sites has a function that matches this signature
 
 ```go
-type Website struct {
-   func checkHandle(handle string) bool, error {}
+func website(handle string) (string, bool) {
+  return "example.com", false
 }
 ```
 
-Add your site to list of websites in `websites.go`. Make sure you add some
-tests to `websites_test.go` as well.
+Add your site function to list of websites in `handlehelp.go`.
