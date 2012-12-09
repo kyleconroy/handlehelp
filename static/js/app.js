@@ -27,6 +27,11 @@ search.addEventListener("submit", function(e) {
     
     if (result.Available) {
       item.className = "available";
+      var signup = document.createElement('a');
+      signup.href = "http://" + result.Site + ".com";
+      signup.appendChild(document.createTextNode('Sign Up'));
+
+      item.appendChild(signup);
     }
 
     results.appendChild(item);

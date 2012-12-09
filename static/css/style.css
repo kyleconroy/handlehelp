@@ -1,7 +1,7 @@
 #results {
   padding: 0;
   list-style-type: none;
-  margin: 21px auto 0 auto;
+  margin: 3% auto 0 auto;
 }
 
 header {
@@ -9,18 +9,23 @@ header {
 }
 
 header, #results {
-  width: 100%;
+  width: 94%;
+  padding: 0 3%;
   max-width: 450px;
 }
 
 div {
   background: #5C0100;
-  padding: 21px 0;
+  padding: 3% 0;
+}
+
+#results li a {
+  float: right;
 }
 
 #results li {
   color: red;
-  margin-bottom: 21px;
+  margin-bottom: 3%;
   background: #fff;
   padding: 10px;
   border-top: 1px solid #aaa;
