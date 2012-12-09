@@ -1,0 +1,7 @@
+#results li {
+  background: red;
+}
+
+#results li.available {
+  background: green;
+}
