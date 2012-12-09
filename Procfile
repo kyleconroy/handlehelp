@@ -1,1 +1,1 @@
-web: handlehelp
+web: server
