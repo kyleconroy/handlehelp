@@ -2,17 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
   </head>
   <body>
-    <h1>Handle Help</h1>
-    <h2>Check the availabity of your handle on different websites</h2>
-    <form id="search" action="/search" method="GET">
-      <input id="query" type="text" name="query">
-      <input type="submit" value="Check Availability">
-    </form>
-    <ul id="results">
-    </ul>
+      <div>
+      <header>
+        <h1>Handle Help</h1>
+        <p>Check the availabity of your handle on different websites</p>
+      <form id="search" action="/search" method="GET">
+        <input id="query" type="text" name="query"><input type="submit" value="Check">
+      </form>
+      </header>
+    </div>
+      <ul id="results">
+      </ul>
     <script type="text/javascript" src="/static/js/eventSource.js"></script>
     <script type="text/javascript" src="/static/js/app.js"></script>
   </body>
