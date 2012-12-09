@@ -12,7 +12,9 @@ import (
 
 func reddit(handle string) (string, bool) {
 
-	if len(handle) < 3 || len(handle) > 20 {
+	valid, err := regexp.MatchString("^[a-zA-Z0-9_-]{3,20}$", handle)
+
+	if !valid || err != nil {
 		return "reddit", false
 	}
 
@@ -27,7 +29,7 @@ func reddit(handle string) (string, bool) {
 
 func twitter(handle string) (string, bool) {
 
-	valid, err := regexp.MatchString("[a-zA-Z0-9_]{1,15}", handle)
+	valid, err := regexp.MatchString("^[a-zA-Z0-9_]{1,15}$", handle)
 
 	if !valid || err != nil {
 		return "twitter", false
