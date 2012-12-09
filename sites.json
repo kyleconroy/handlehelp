@@ -1,0 +1,50 @@
+{
+  "Sites": [
+  {
+    "Name": "twitter",
+    "UserURL": "http://twitter.com/%s",
+    "RegisterURL": "https://twitter.com/signup", 
+    "Pattern": "^[a-zA-Z0-9_]{1,15}$"
+  },
+  {
+    "Name": "reddit",
+    "UserURL": "http://reddit.com/user/%s",
+    "RegisterURL": "http://reddit.com", 
+    "Pattern": "^[a-zA-Z0-9_-]{3,20}$"
+  },
+  {
+    "Name": "hacker news",
+    "UserURL": "http://news.ycombinator.com/user?id=%s",
+    "RegisterURL": "http://news.ycombinator.com/submit",
+    "Pattern": "^[a-zA-Z0-9_-]{2,15}$",
+    "NotFound": "No such user."
+  },
+  {
+    "Name": "lobsters",
+    "UserURL": "https://lobste.rs/u/%s",
+    "Pattern": "^[a-zA-Z0-9_-]{2,20}$"
+  },
+  { 
+    "Name": "dribble",
+    "UserURL": "https://dribble.com/%s",
+    "Pattern": "^[a-zA-Z0-9_-]{2,20}$"
+  },
+  {
+    "Name": "forrst",
+    "UserURL": "https://forrst.com/people/%s", 
+    "Pattern": "^[a-zA-Z0-9_]{1,20}$"
+  },
+  {
+    "Name": "facebook",
+    "UserURL": "https://facebook.com/%s",
+    "RegisterURL": "https://www.facebook.com/",
+    "Pattern": "^[a-zA-Z0-9\\.]{3,50}$"
+  },
+  {
+    "Name": "youtube", 
+    "UserURL": "https://www.youtube.com/user/%s",
+    "RegisterURL": "https://www.youtube.com/",
+    "Pattern": "^[a-zA-Z0-9]{3,50}$"
+  }
+  ]
+}

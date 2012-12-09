@@ -4,24 +4,49 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-"regexp"
+	"regexp"
+	"strings"
 )
 
 type Website struct {
-	Pattern string
-	UserURL string
-	Name string
+	Pattern  string
+	UserURL  string
+	Name     string
+	NotFound string
+	RegisterURL string
+}
+
+type Config struct {
+	Sites []Website
 }
 
 type handleResult struct {
-	Site      string
+	Site      Website
 	Available bool
 }
 
-func checkHandle(handle string, site Website) (bool) {
+func readConfig() Config {
+	if len(os.Args) != 2 {
+		log.Fatal("You must supply a configuration filename")
+	}
+	filename := os.Args[1]
+	bytes, err := ioutil.ReadFile(filename)
+	if err != nil {
+		panic(err)
+	}
+	var c Config
+	err = json.Unmarshal(bytes, &c)
+	if err != nil {
+		panic(err)
+	}
+	return c
+}
+
+func checkHandle(handle string, site Website) bool {
 
 	valid, err := regexp.MatchString(site.Pattern, handle)
 
@@ -30,14 +55,26 @@ func checkHandle(handle string, site Website) (bool) {
 	}
 
 	res, err := http.Get(fmt.Sprintf(site.UserURL, handle))
-	
+
 	if err != nil {
 		return false
 	}
-	
-	return res.StatusCode == 404
-}
 
+	if site.NotFound == "" {
+		fmt.Printf("%s %d", site.Name, res.StatusCode)
+		return res.StatusCode == 404
+	}
+
+	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		return false
+	}
+
+
+	return strings.Contains(string(body), site.NotFound)
+}
 
 func main() {
 	tmpl, err := template.ParseFiles("index.html")
@@ -46,16 +83,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	sites := []Website{
-		Website{Name: "twitter", UserURL: "http://twitter.com/%s", Pattern: "^[a-zA-Z0-9_]{1,15}$"},
-		Website{Name: "reddit", UserURL: "http://reddit.com/user/%s", Pattern: "^[a-zA-Z0-9_-]{3,20}$"},
-		Website{Name: "hacker news", UserURL: "http://news.ycombinator.com/user?id=%s", Pattern: "^[a-zA-Z0-9_-]{2,15}$"},
-		Website{Name: "lobsters", UserURL: "https://lobste.rs/u/%s", Pattern: "^[a-zA-Z0-9_-]{2,20}$"},
-		Website{Name: "dribble", UserURL: "https://dribble.com/%s", Pattern: "^[a-zA-Z0-9_-]{2,20}$"},
-		Website{Name: "forrst", UserURL: "https://forrst.com/people/%s", Pattern: "^[a-zA-Z0-9_]{1,20}$"},
-		Website{Name: "facebook", UserURL: "https://facebook.com/%s", Pattern: "^[a-zA-Z0-9\\.]{3,50}$"},
-		Website{Name: "youtube", UserURL: "https://www.youtube.com/user/%s", Pattern: "^[a-zA-Z0-9]{3,50}$"},
-	}
+	config := readConfig()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl.Execute(w, nil)
@@ -75,14 +103,14 @@ func main() {
 
 		cm := make(chan handleResult)
 
-		for _, site := range sites {
+		for _, site := range config.Sites {
 			go func(site Website) {
 				a := checkHandle(r.FormValue("handle"), site)
-				cm <- handleResult{Site: site.Name, Available: a}
+				cm <- handleResult{Site: site, Available: a}
 			}(site)
 		}
 
-		for _, _ = range sites {
+		for _, _ = range config.Sites {
 			hr, ok := <-cm
 
 			if !ok {

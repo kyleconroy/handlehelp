@@ -23,15 +23,19 @@ search.addEventListener("submit", function(e) {
 
     var item = document.createElement('li');
 
-    item.appendChild(document.createTextNode(result.Site));
-    
+    item.appendChild(document.createTextNode(result.Site.Name));
+
+    console.log(result);
+
     if (result.Available) {
       item.className = "available";
-      var signup = document.createElement('a');
-      signup.href = "http://" + result.Site + ".com";
-      signup.appendChild(document.createTextNode('Sign Up'));
 
-      item.appendChild(signup);
+      if (result.Site.RegisterURL) {
+        var signup = document.createElement('a');
+        signup.href = result.Site.RegisterURL;
+        signup.appendChild(document.createTextNode('Sign Up'));
+        item.appendChild(signup);
+      }
     }
 
     results.appendChild(item);
