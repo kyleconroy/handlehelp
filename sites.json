@@ -60,9 +60,9 @@
     "Pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{1,30}[a-zA-Z0-9]?$"
   },
   {
-    "Name": "pintrest", 
-    "UserURL": "http://pintrest.com/%s/",
-    "RegisterURL": "https://www.pintrest.com/join/register",
+    "Name": "pinterest", 
+    "UserURL": "https://pinterest.com/%s/",
+    "RegisterURL": "https://www.pinterest.com/join/register",
     "Pattern": "^[a-zA-Z0-9]{3,15}$"
   }
   ]
