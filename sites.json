@@ -26,6 +26,7 @@
   },
   { 
     "Name": "dribbble",
+    "RegisterURL": "http://dribbble.com/signup/designers",
     "UserURL": "http://dribbble.com/%s",
     "Pattern": "^[a-zA-Z0-9_-]{2,20}$"
   },
