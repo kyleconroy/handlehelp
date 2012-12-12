@@ -109,7 +109,7 @@ func main() {
 				"event": "search",
 				"properties": map[string]interface{}{
 					"token":  os.Getenv("HANDLE_MIXPANEL_TOKEN"),
-					"ip":     os.Getenv("HTTP_X_REAL_IP"),
+					"ip":     os.Getenv("X-FORWARDED-FOR"),
 					"handle": r.FormValue("handle"),
 				},
 			}
