@@ -104,8 +104,6 @@ func main() {
 		cm := make(chan handleResult)
 
 		go func() {
-			fmt.Println(os.Getenv("X-FORWARDED-FOR"))
-
 			datum := map[string]interface{}{
 				"event": "search",
 				"properties": map[string]interface{}{
