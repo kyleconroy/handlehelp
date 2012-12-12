@@ -1,22 +1,24 @@
 package main
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"regexp"
 	"strings"
 )
 
 type Website struct {
-	Pattern  string
-	UserURL  string
-	Name     string
-	NotFound string
+	Pattern     string
+	UserURL     string
+	Name        string
+	NotFound    string
 	RegisterURL string
 }
 
@@ -100,6 +102,28 @@ func main() {
 		w.Header().Set("Connection", "keep-alive")
 
 		cm := make(chan handleResult)
+
+		go func() {
+
+			datum := map[string]interface{}{
+				"event": "search",
+				"properties": map[string]interface{}{
+					"token":  os.Getenv("HANDLE_MIXPANEL_TOKEN"),
+					"ip":     os.Getenv("HTTP_X_REAL_IP"),
+					"handle": r.FormValue("handle"),
+				},
+			}
+
+			b, err := json.Marshal(datum)
+
+			if err != nil {
+				return
+			}
+
+			v := url.Values{}
+			v.Set("data", base64.StdEncoding.EncodeToString(b))
+			_, _ = http.Get("http://api.mixpanel.com/track/?" + v.Encode())
+		}()
 
 		for _, site := range config.Sites {
 			go func(site Website) {
