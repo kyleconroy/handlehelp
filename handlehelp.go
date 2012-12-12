@@ -110,7 +110,7 @@ func main() {
 				"event": "search",
 				"properties": map[string]interface{}{
 					"token":  os.Getenv("HANDLE_MIXPANEL_TOKEN"),
-					"ip":     os.Getenv("X-FORWARDED-FOR"),
+					"ip":     r.Header.Get("X-Forwarded-For"),
 					"handle": r.FormValue("handle"),
 				},
 			}
