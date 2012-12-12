@@ -31,6 +31,14 @@ body > div {
   border-top: 1px solid #aaa;
 }
 
+a {
+  color: #333;
+}
+
+a:visited {
+  color: #000;
+}
+
 #results li.available {
   color: green;
 }
