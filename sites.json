@@ -25,8 +25,8 @@
     "Pattern": "^[a-zA-Z0-9_-]{2,20}$"
   },
   { 
-    "Name": "dribble",
-    "UserURL": "https://dribble.com/%s",
+    "Name": "dribbble",
+    "UserURL": "http://dribbble.com/%s",
     "Pattern": "^[a-zA-Z0-9_-]{2,20}$"
   },
   {
@@ -45,6 +45,18 @@
     "UserURL": "https://www.youtube.com/user/%s",
     "RegisterURL": "https://www.youtube.com/",
     "Pattern": "^[a-zA-Z0-9]{3,50}$"
+  },
+  {
+    "Name": "deviant art", 
+    "UserURL": "https://%s.deviantart.com",
+    "RegisterURL": "https://www.deviantart.com/join",
+    "Pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{1,18}[a-zA-Z0-9]$"
+  },
+  {
+    "Name": "tumblr", 
+    "UserURL": "https://%s.tumblr.com",
+    "RegisterURL": "https://www.tumblr.com",
+    "Pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{1,30}[a-zA-Z0-9]?$"
   }
   ]
 }

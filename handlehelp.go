@@ -60,11 +60,6 @@ func checkHandle(handle string, site Website) bool {
 		return false
 	}
 
-	if site.NotFound == "" {
-		fmt.Printf("%s %d", site.Name, res.StatusCode)
-		return res.StatusCode == 404
-	}
-
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 
@@ -72,6 +67,9 @@ func checkHandle(handle string, site Website) bool {
 		return false
 	}
 
+	if site.NotFound == "" {
+		return res.StatusCode == 404 || string(body) == ""
+	}
 
 	return strings.Contains(string(body), site.NotFound)
 }
