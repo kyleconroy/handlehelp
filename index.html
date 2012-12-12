@@ -7,17 +7,25 @@
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
   </head>
   <body>
-      <div>
+    <div>
       <header>
         <h1>Handle Help</h1>
         <p>Check the availabity of your handle on different websites</p>
-      <form id="search" action="/search" method="GET">
-        <input required id="query" type="text" name="query"><input type="submit" value="Check">
-      </form>
+        <form id="search" action="/search" method="GET">
+          <input required id="query" type="text" name="query"><input type="submit" value="Check">
+        </form>
       </header>
     </div>
-      <ul id="results">
-      </ul>
+    <ul id="results">
+    </ul>
+    <footer>
+      <div>
+        <span>If you use HandleHelp, consider supporting the author on <a href="https://www.gittip.com/kyleconroy/">Gittip:</a></span>
+        <iframe style="border: 0; margin: 0; padding: 0;"
+          src="https://www.gittip.com/kyleconroy/widget.html"
+          width="48pt" height="22pt"></iframe>
+      </div>
+    </footer>        
     <script type="text/javascript" src="/static/js/eventSource.js"></script>
     <script type="text/javascript" src="/static/js/app.js"></script>
   </body>

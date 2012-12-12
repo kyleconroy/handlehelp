@@ -14,7 +14,7 @@ header, #results {
   max-width: 450px;
 }
 
-div {
+body > div {
   background: #5C0100;
   padding: 3% 0;
 }
@@ -81,4 +81,24 @@ form > input[type="submit"] {
   font-size: 20px;
   color: #fff;
   background: #B30000;
+}
+
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+}
+
+footer > div {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 450px;
+}
+
+footer iframe, footer span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 5px;
 }
