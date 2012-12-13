@@ -29,6 +29,7 @@ type Config struct {
 type handleResult struct {
 	Site      Website
 	Available bool
+	Profile string
 }
 
 func readConfig() Config {
@@ -127,7 +128,8 @@ func main() {
 		for _, site := range config.Sites {
 			go func(site Website) {
 				a := checkHandle(r.FormValue("handle"), site)
-				cm <- handleResult{Site: site, Available: a}
+				profile := fmt.Sprintf(site.UserURL, r.FormValue("handle"))
+				cm <- handleResult{Site: site, Available: a, Profile: profile}
 			}(site)
 		}
 

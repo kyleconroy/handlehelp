@@ -19,24 +19,27 @@ body > div {
   padding: 3% 0;
 }
 
-#results li a {
+#results li a.signup {
   float: right;
 }
 
 #results li {
-  color: red;
   margin-bottom: 3%;
   background: #fff;
   padding: 10px;
   border-top: 1px solid #aaa;
 }
 
-#results a {
+#results a.signup {
   color: #333;
 }
 
-#results a:visited {
+#results a.signup:visited {
   color: #000;
+}
+
+#results a {
+  color: red;
 }
 
 #results li.available {
