@@ -8,9 +8,10 @@
   },
   {
     "Name": "reddit",
-    "UserURL": "http://reddit.com/user/%s",
+    "UserURL": "http://www.reddit.com/api/username_available.json?user=%s",
     "RegisterURL": "http://reddit.com", 
-    "Pattern": "^[a-zA-Z0-9_-]{3,20}$"
+    "Pattern": "^[a-zA-Z0-9_-]{3,20}$",
+    "NotFound": "true"
   },
   {
     "Name": "hacker news",
